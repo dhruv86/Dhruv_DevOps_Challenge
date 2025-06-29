@@ -193,7 +193,7 @@ jobs:
         # If terraform didn't run, get values from Azure
         if [ -z "${{ needs.terraform.outputs.app_name }}" ]; then
           echo "Getting App Service details from Azure..."
-          APP_NAME=$(az webapp list --resource-group ${{ secrets.RESOURCE_GROUP_NAME }} --query "[0].name" -o tsv)
+          APP_NAME=$(az webapp list --resource-group ${{ vars.RESOURCE_GROUP_NAME }} --query "[0].name" -o tsv)
           RESOURCE_GROUP=${{ secrets.RESOURCE_GROUP_NAME }}
           APP_URL="https://${APP_NAME}.azurewebsites.net"
         else
